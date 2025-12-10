@@ -1,10 +1,12 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
+
 #include <vector>
 #include <deque>
 #include <list>
 #include <queue>
+#include <set>
 
 using namespace std;
 
@@ -26,6 +28,12 @@ void Init(T & data){
     }
     cout << "Success ! " << endl;
 }
+
+template<class T>
+void ShowForEach(T & data){
+    cout << data << "|";
+}
+
 void InitForQueue( queue<int> & data ,int num){
     cout << endl << "Init for queue : ";
     for( int i = 0; i < num; i++ ){
@@ -35,12 +43,9 @@ void InitForQueue( queue<int> & data ,int num){
     }
     cout << "Success ! " << endl;
 }
-template<class T>
-void ShowForEach(T & data){
-    cout << data << "|";
-}
 
-//vector 序列容器 类似自动化扩容数组，不支持头插入
+//序列容器 
+//vector 自动扩容数组，不支持头插入
 void vector_test(){
     cout << "vector test : ";
     vector<int> v1(10);
@@ -55,7 +60,7 @@ void vector_test(){
     cout << endl;
 }
 
-//deque 序列容器 双端队列，支持头插入
+//deque 双端队列容器，支持头插入
 void deque_test(){ 
     cout << "deque test : ";
     deque<int> d1(10);
@@ -119,11 +124,37 @@ void queue_test(){
 //priority_queue 优先级队列容器 更大的会放在队列首(使用greater<class name>())
 //stack 栈容器 后进先出
 
+//关联容器 与序列无关，内部使用红黑树，排序，查找效率更高
+void set_test(){
+    cout << "set test : " << endl;
+    ostream_iterator<string> Myout (cout, " | ");
+    string s1[5] = { "hello" , "world" , "nihao" , "china" , "hello" };
+    string s2[5] = { "hello" , "world" , "zhongguo" , "beijing" , "hello" };
+    set <string> set1(s1,s1+5);
+    set <string> set2(s2,s2+5);
+    set <string> set3;
+    // set1.insert(s2,s2+5);
+//内部自动排序，且不允许重复
+    copy( set1.begin() , set1.end() , Myout );                                          cout<<endl;
+//并 交 差 集合 输出到输出流打印
+    set_union( set1.begin() , set1.end() , set2.begin() , set2.end() , Myout );         cout<<endl;
+    set_intersection( set1.begin() , set1.end() , set2.begin() , set2.end() , Myout );  cout<<endl;
+    set_difference( set1.begin() , set1.end() , set2.begin() , set2.end() , Myout );    cout<<endl;
+//两个集合的并集到 输出到set3
+    set_union( set1.begin() , set1.end() , set2.begin() , set2.end() , 
+                inserter( set3 , set3.begin() ) );                                      cout<<endl;
+//upper_bound + lower_bound 输出自定义区间
+    copy( set3.begin() , set3.end() , Myout );                                          cout<<endl;
+    copy( set3.upper_bound("hello") , set3.lower_bound("zhongguo") , Myout );           cout<<endl;                       cout<<endl;
+
+}
+
 int main(){
-    vector_test();
-    deque_test();
-    list_test();
-    queue_test();
+    // vector_test();
+    // deque_test();
+    // list_test();
+    // queue_test();
+    // set_test();
 
     return 1;
 }
