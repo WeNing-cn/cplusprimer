@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\EXES\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "C:\\CodeSpace\\Compile\\mingw64\\MinGW64master\\bin"
