@@ -71,9 +71,26 @@ void ValArrayTest(){
     cout << " valarray 4 slice() : ";   MySTL_Print( va4 );
 }
 
+
+double sum( const initializer_list<int> & il ){
+    double total = 0.0;
+    for( const auto & elem : il ){
+        total += elem;
+    }
+    return total;
+}
+void IntializerListTest(){
+    cout << "=== Initializer List Test ===" << endl;
+    initializer_list<int> il = { 10, 20, 30, 40, 50 };
+    MySTL_Print( il );
+    cout << " sum : " << sum( il ) << endl;
+    cout << endl;
+}
+
 int main(){
     // ReplaceTest();
     // StringTest();
-    ValArrayTest();
+    //ValArrayTest();
+    IntializerListTest();
     return 0;
 }
