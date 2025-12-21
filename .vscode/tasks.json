@@ -8,7 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "${fileDirname}\\STL_Basic_Fun.cpp",
+                "C:\\CodeSpace\\Objects\\CpluePrimer\\cplusprimer\\Cheapter_16\\STL_Basic_Fun.cpp",
                 "-o",
                 "${fileDirname}\\EXES\\${fileBasenameNoExtension}.exe"
             ],
